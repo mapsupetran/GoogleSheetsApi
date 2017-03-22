@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SheetsQuickstart
+namespace GoogleSheetsApi
 {
     class Program
     {
@@ -78,7 +78,7 @@ namespace SheetsQuickstart
             }
             finally
             {
-                Console.Read(); 
+                Console.Read();
             }
         }
     }
