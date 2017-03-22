@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "realtair-referrals",
+  "private_key_id": "83514124763699c9d1d5e05f6e96ec72658c56b7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCoATpv4gweBY5c\nIVC7sMaabikBeaUAuAELtrVV7177UscLVKbTJHoIetGFXFL46AjS6A6c73FDqT5f\nCDczcgpSfQBJF2viqBf5t+ODqKyp8e9I3CDx3WVtApbUAkkMf/EF3+fOHRSoC34f\n/OcYK1NgY0+6pCFjlYk72CGHAllIsKTaAs9apVgeXo6WBA1c8vriISSeTLk4u/E0\noOMCJQsjmdUz6VtZy+6j+NdscDIaTgnApMHESiL2wiwczYLmSkC8t/KJczm08ZMZ\n6J+91sZEsURfTZEufE/JV2rshoj8j6QEFkzi5q//ot4e41wmu8T6PZBI+4x8BmKh\nqhY75wA3AgMBAAECggEAA3iTBoC7E1u2Bz1A97+9Oq+P9VHYEN28V8ucj3v0kGiz\naA6Fq9MTGl2/Omwf4riYhhL5SlDAHE/A1CHNUijHAdFHUjtDpVkntacQ8kVn29L9\nyJmTrKuQTuJAz3yEmdeC2UY4+c8sABTMtEh7Vcp/XHxwx0Bg2Dfcr/nVJ37q7U+A\nYk839U7SxhMJAcRshCeq+g/s4wcDPE9GL6W5sOw7GBnVForzn/3XX4tN6BYWB4DQ\nfUNHkLIfqL+5KXuV7T1+7rMS8hOj6PtXuWWh+tOJqVrVw4LfttQLMFDHr97TrwvH\n6po7DKu+cYC0o9tH3/jqaq7pocJgElNP9nlYKYdOkQKBgQDc2CgZQU2UCj12Kwhw\nqeUaDE9jT8+c4t3bq/qTp63QWAFEFhN+rIEdxYbVlsHyaH7Qi8HNVsAdst4aSLmJ\n5P8sF09lHGkKJ2f6hNOdI+BTO2h46ndPIoH/okZCPWNfJOAkSSstIoIBIpYN1ybf\n+adWHBMCw7CQrmBMkSw+qPEqRQKBgQDCv8FTTiJu0+G95BhMC+HM2Eu26q3XQ57X\nWEO9pbrpz5SPiHaKEHctoQ8J5A0jyjqdxuRPkGMBUZ7jFt4CrjZAGFyE46okF1JB\nF6lbwWFe036oOVk9kMATlRyAquFzmoc7+Ib7qGuoMwxokFqZDk0UkYfkvmP5Bhui\nBCTb8loGSwKBgDR8y0r1UlLU/DaRk7fzKRg/xL59wYIwCTqkbTGasJzLzcE43flF\nVoqU367z3bSXUUyPasg6zf5A/LiSgEZdvqfkAmKtlelr5DKOTx0R4cbmX7YdQ63z\nLaJsFva3UF7UjNES8sgPY4aRichQUlT5KOQ2V+5YRCaeyxRnjHR4AplhAoGANgnR\nUhVHNqtyYyeMmmVdpWKLN9lMnYO06poiSdhX0hL4bQ93nP3OpAmhy6PNBZZSx37t\n0SoGXtJQHUE2H1ZJ1WUtHu6xQkx6VXeEVeKF6zMSXQl0usGUmppwiz9fSZ2iUsC2\na9Qi80we8FDF4tx2BPQQ2ib+RJYuSrmNpL5NvpsCgYEAr/Aezt/uAMm32vr0tc1R\nE32WzjxkL5KYSLLKTeO9r+HlTrkY/LgvRiz0qBUvfY8D21K1T4b4q2fPLgVaZAYW\nknvSzAWD0e8Jdmg3GDHhkuRBpSB67zQf/w65JChOHmAJ+AjIc426EtGZzbkIWior\nIYOBZKHPR/DwIV0lag84nu8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "realtair-referrals@realtair-referrals.iam.gserviceaccount.com",
+  "client_id": "101579092392798463099",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/realtair-referrals%40realtair-referrals.iam.gserviceaccount.com"
+}
