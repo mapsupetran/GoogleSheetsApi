@@ -28,22 +28,57 @@ namespace GoogleSheetsApi.Programs
                 new ServiceAccountProvider(),
                 ApiKeyPath,
                 ApplicationScopes);
-
+            
+            // Create request
             var requestFactory = new GDataRequestFactory(null);
             requestFactory.CustomHeaders.Add("Authorization: Bearer " + ((ServiceAccountCredential)credential).Token.AccessToken);
 
+            // Create service using the request
             var service = new SpreadsheetsService(null) { RequestFactory = requestFactory };
 
             // Instantiate a SpreadsheetQuery object to retrieve spreadsheets.
-            SpreadsheetQuery query = new SpreadsheetQuery();
+            string docKey = "1dAa5tHdqkq2brQ5pfoFjiv1GkVxge52bn99Oz2AgrQw";
+            string gDocsURL = "https://spreadsheets.google.com/feeds/spreadsheets/private/full/{0}";
+            string docURL = String.Format(gDocsURL, docKey);
+            SpreadsheetQuery query = new SpreadsheetQuery()
+            {
+                Uri = new Uri(docURL) 
+            };
 
             // Make a request to the API and get all spreadsheets.
             SpreadsheetFeed feed = service.Query(query);
-
             if (feed.Entries.Count == 0)
             {
                 Console.WriteLine("There are no sheets");
             }
+
+            SpreadsheetEntry spreadsheet = feed.Entries.SingleOrDefault() as SpreadsheetEntry;
+            var worksheet = spreadsheet.Worksheets.Entries.SingleOrDefault(e => (e as WorksheetEntry).Title.Text == "Data") as WorksheetEntry;
+
+            // Define the URL to request the list feed of the worksheet.
+            AtomLink listFeedLink = worksheet.Links.FindService(GDataSpreadsheetsNameTable.ListRel, null);
+
+            // Fetch the list feed of the worksheet.
+            ListQuery listQuery = new ListQuery(listFeedLink.HRef.ToString());
+            listQuery.SpreadsheetQuery = "type=Sales";
+            ListFeed listFeed = service.Query(listQuery);
+            Console.WriteLine(listFeed.Entries.Count);
+
+            return;
+
+            // Iterate through each row, printing its cell values.
+            foreach (ListEntry row in listFeed.Entries)
+            {
+                // Print the first column's cell value
+                Console.WriteLine(row.Title.Text);
+                // Iterate over the remaining columns, and print each cell value
+                foreach (ListEntry.Custom element in row.Elements)
+                {
+                    Console.WriteLine(element.Value);
+                }
+            }
+
+            return;
 
             // Iterate through all of the spreadsheets returned
             foreach (SpreadsheetEntry sheet in feed.Entries)

@@ -9,7 +9,7 @@ namespace GoogleSheetsApi
 {
     class Program
     {
-        static IGoogleApiClient client = new ServiceAccountClient();
+        static IGoogleApiClient client = new ServiceAccountClientV3();
 
         [STAThread]
         static void Main(string[] args)
