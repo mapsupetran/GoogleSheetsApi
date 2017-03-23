@@ -1,4 +1,4 @@
-﻿using GoogleSheetsApi.Authorization;
+﻿using Google.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
 
-namespace GoogleSheetsApi.ConsoleApp.Authorization
+namespace Google.Authorization
 {
-    internal abstract class AutorizationProviderBase : IAuthorizationProvider<ServiceCredential>
+    public abstract class AuthorizationProviderBase<T> : IAuthorizationProvider<T> 
+        where T : ICredential
     {
         public abstract ICredential CreateCredential(string apiKeyPath, string scopes, string user = null);
     }

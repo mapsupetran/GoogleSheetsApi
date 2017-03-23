@@ -15,7 +15,7 @@ using GoogleSheetsApi.Authorization;
 
 namespace GoogleSheetsApi.Programs
 {
-    internal class OauthClient : IGoogleApiClient
+    public class OauthClient : IGoogleApiClient
     {
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/sheets.googleapis.com-dotnet-quickstart.json

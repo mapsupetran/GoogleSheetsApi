@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
 using System.IO;
 
-namespace GoogleSheetsApi.Authorization
+namespace Google.Authorization
 {
-    internal class ServiceAccountProvider : AuthorizationProviderBase<ServiceCredential>
+    public class ServiceAccountProvider : AuthorizationProviderBase<ServiceCredential>
     {
         public override ICredential CreateCredential(string apiKeyPath, string scopes, string user = null)
         {

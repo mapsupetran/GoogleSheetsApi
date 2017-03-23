@@ -1,4 +1,4 @@
-﻿using GoogleSheetsApi.Authorization;
+﻿using Google.Authorization;
 using GoogleSheetsApi.Extensions;
 using System;
 using System.Collections.Generic;
@@ -10,9 +10,9 @@ using System.IO;
 using System.Threading;
 using Google.Apis.Util.Store;
 
-namespace GoogleSheetsApi.Authorization
+namespace Google.Authorization
 {
-    internal class UserCredentialProvider : AuthorizationProviderBase<UserCredential>
+    public class UserCredentialProvider : AuthorizationProviderBase<UserCredential>
     {
         public override ICredential CreateCredential(string apiKeyPath, string scopes, string user = null)
         {
