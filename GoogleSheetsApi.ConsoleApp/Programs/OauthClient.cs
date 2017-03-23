@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using GoogleSheetsApi.Authorization;
 
 namespace GoogleSheetsApi.Programs
 {
@@ -18,26 +19,20 @@ namespace GoogleSheetsApi.Programs
     {
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/sheets.googleapis.com-dotnet-quickstart.json
-        static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
-        static string ApplicationName = "Google Sheets API .NET Quickstart";
+        const string ApiKeyPath = "client_secret.json";
+        const string ApplicationName = "Google Sheets API .NET Quickstart";
+        const string ApplicationUser = "marlons@campaigntrack.com";
+        static string[] ApplicationScopes = { SheetsService.Scope.SpreadsheetsReadonly };
+
 
         public void Start(string[] args)
         {
-            UserCredential credential;
-
-            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
-            {
-                string credPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                credPath = Path.Combine(credPath, ".credentials/sheets.googleapis.com-dotnet-quickstart.json");
-
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "marlons@campaigntrack.com",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
+            // Get credential
+            var credential = AuthorizationManager<UserCredential>.GetCredential(
+                new UserCredentialProvider(),
+                ApiKeyPath,
+                ApplicationScopes,
+                ApplicationUser);
 
             // Create Google Sheets API service.
             var service = new SheetsService(new BaseClientService.Initializer()
@@ -48,8 +43,8 @@ namespace GoogleSheetsApi.Programs
 
             // Define request parameters.
             //String spreadsheetId = "1dAa5tHdqkq2brQ5pfoFjiv1GkVxge52bn99Oz2AgrQw";
-            String spreadsheetId = "1x4segHwAOX6b7s9TxhsdjprD40-XaBFKCQax4SSUOVk";
-            String range = "Sheet1!A2:C";
+            String spreadsheetId = "1dAa5tHdqkq2brQ5pfoFjiv1GkVxge52bn99Oz2AgrQw";
+            String range = "Data!A2:D";
             SpreadsheetsResource.ValuesResource.GetRequest request = service.Spreadsheets.Values.Get(spreadsheetId, range);
 
             // Prints the names and majors of students in a sample spreadsheet:

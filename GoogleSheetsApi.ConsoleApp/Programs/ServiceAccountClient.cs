@@ -3,6 +3,8 @@ using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Util.Store;
+using GoogleSheetsApi.Authorization;
+using GoogleSheetsApi.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,24 +22,18 @@ namespace GoogleSheetsApi.Programs
         // Fields
         //private const string ServiceAccountEmail = @"realtair-referrals@realtair-referrals.iam.gserviceaccount.com";
         private const string ApplicationName = "Google Sheets API .Net using Service Account";
+        private const string ApiKeyPath = "realtair-referrals-835141247636.json";
         private string[] ApplicationScopes = new[] { SheetsService.Scope.Spreadsheets, SheetsService.Scope.Drive };
 
         // Methods
         public void Start(string[] args)
         {
-            ServiceAccountCredential credential;
-            using (var stream = new FileStream("realtair-referrals-835141247636.json", FileMode.Open, FileAccess.Read))
-            {
-                credential = GoogleCredential
-                    .FromStream(stream)
-                    .CreateScoped(ApplicationScopes)
-                    .UnderlyingCredential as ServiceAccountCredential;
-                
-                if (!credential.RequestAccessTokenAsync(System.Threading.CancellationToken.None).Result)
-                {
-                    throw new InvalidOperationException("Access token request failed.");
-                }
-            }
+            // Get credential
+            var credential = AuthorizationManager<ServiceCredential>.GetCredential(
+                new ServiceAccountProvider(),
+                ApiKeyPath,
+                ApplicationScopes);
+
             // Create Google Sheets API service.
             var service = new SheetsService(new BaseClientService.Initializer()
             {

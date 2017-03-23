@@ -87,13 +87,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorization\AutorizationProviderBase.cs" />
+    <Compile Include="Authorization\UserCredentialProvider.cs" />
+    <Compile Include="Authorization\ServiceAccountProvider.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Interfaces\IAuthorizationProvider.cs" />
+    <Compile Include="Authorization\AuthorizationManager.cs" />
     <Compile Include="Entities\Agent.cs" />
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\IGoogleApiClient.cs" />
     <Compile Include="Programs\OauthClient.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Programs\OauthClientV3.cs" />
+    <Compile Include="Programs\ServiceAccountClientV3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Programs\ServiceAccountClient.cs" />
   </ItemGroup>

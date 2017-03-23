@@ -2,6 +2,7 @@
 using Google.Apis.Sheets.v4;
 using Google.GData.Client;
 using Google.GData.Spreadsheets;
+using GoogleSheetsApi.Authorization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,32 +12,25 @@ using System.Threading.Tasks;
 
 namespace GoogleSheetsApi.Programs
 {
-    internal class OauthClientV3 : IGoogleApiClient
+    internal class ServiceAccountClientV3 : IGoogleApiClient
     {
         // Fields
         //private const string ServiceAccountEmail = @"realtair-referrals@realtair-referrals.iam.gserviceaccount.com";
         private const string ApplicationName = "Google Sheets API .Net using Service Account";
-        private string ApplicationScopes = @"https://spreadsheets.google.com/feeds https://docs.google.com/feeds";
+        private const string ApiKeyPath = "realtair-referrals-835141247636.json";
+        private const string ApplicationScopes = @"https://spreadsheets.google.com/feeds https://docs.google.com/feeds";
 
         // Methods
         public void Start(string[] args)
         {
-            ServiceAccountCredential credential;
-            using (var stream = new FileStream("realtair-referrals-835141247636.json", FileMode.Open, FileAccess.Read))
-            {
-                credential = GoogleCredential
-                    .FromStream(stream)
-                    .CreateScoped(ApplicationScopes)
-                    .UnderlyingCredential as ServiceAccountCredential;
-
-                if (!credential.RequestAccessTokenAsync(System.Threading.CancellationToken.None).Result)
-                {
-                    throw new InvalidOperationException("Access token request failed.");
-                }
-            }
+            // Get credential
+            var credential = AuthorizationManager<ServiceCredential>.GetCredential(
+                new ServiceAccountProvider(),
+                ApiKeyPath,
+                ApplicationScopes);
 
             var requestFactory = new GDataRequestFactory(null);
-            requestFactory.CustomHeaders.Add("Authorization: Bearer " + credential.Token.AccessToken);
+            requestFactory.CustomHeaders.Add("Authorization: Bearer " + ((ServiceAccountCredential)credential).Token.AccessToken);
 
             var service = new SpreadsheetsService(null) { RequestFactory = requestFactory };
 
@@ -59,7 +53,7 @@ namespace GoogleSheetsApi.Programs
 
                 // Make a request to the API to fetch information about all
                 // worksheets in the spreadsheet.
-                WorksheetFeed wsFeed = sheet.Worksheets;
+                var wsFeed = sheet.Worksheets;
 
                 // Iterate through each worksheet in the spreadsheet.
                 foreach (WorksheetEntry entry in wsFeed.Entries)
